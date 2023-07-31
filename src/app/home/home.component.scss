@@ -1,0 +1,56 @@
+.container {
+  width: 90%;
+  height: 90%;
+  position: relative;
+  left: 10%;
+  top: 10%;
+
+  .input-explanation {
+    font-weight: 550;
+  }
+
+  input {
+    margin-top: 0.5%;
+    min-width: 30%;
+    border-radius: 4px;
+    border-color: lightgray;
+    border-width: 1px;
+    height: 4%;
+    color: grey;
+    box-shadow: 3px 4px 12px -5px #4b5452;
+  }
+  .results-label {
+    margin-top: 2%;
+    font-weight: 450;
+  }
+
+  hr {
+    width: 70%;
+    color: lightgrey;
+  }
+
+  .articles-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 2%;
+    .card {
+      width: 20%;
+      height: 40%;
+      margin-right: 2%;
+      margin-bottom: 4%;
+      box-shadow: 3px 4px 12px -5px #4b5452;
+
+      img {
+        width: 100%;
+      }
+      .date-label {
+        color: lightgrey;
+        font-size: small;
+      }
+
+      h3 {
+        font-weight: normal;
+      }
+    }
+  }
+}

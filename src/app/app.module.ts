@@ -4,9 +4,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { AppComponent } from './app.component';
 import { ArticleComponent } from './article/article.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [AppComponent, ArticleComponent],
+  declarations: [AppComponent, ArticleComponent, HomeComponent],
   imports: [BrowserModule, MatButtonModule, MatIconModule],
   providers: [],
   bootstrap: [AppComponent],
