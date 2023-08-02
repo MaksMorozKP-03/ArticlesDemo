@@ -13,17 +13,13 @@ export default class Article {
     url: String,
     imageUrl: String,
     summary: String,
-    updatedAt: Date
+    updatedAt: string
   ) {
     this.id = id;
     this.title = title;
     this.url = url;
     this.imageUrl = imageUrl;
-
-    summary.length > 100
-      ? (this.summary = summary.slice(0, 100) + '...')
-      : (this.summary = summary);
-
+    this.summary = summary;
     this.updatedAt = new Date(updatedAt);
   }
 }

@@ -9,16 +9,30 @@
     font-weight: 550;
   }
 
-  input {
+  .search-field {
     margin-top: 0.5%;
-    min-width: 30%;
-    border-radius: 4px;
-    border-color: lightgray;
-    border-width: 1px;
     height: 4%;
-    color: grey;
-    box-shadow: 3px 4px 12px -5px #4b5452;
+
+    #icon {
+      position: absolute;
+      width: 5%;
+      top: 4%;
+      left: 1%;
+    }
+
+    // input {
+    //   min-width: 30%;
+    //   min-height: 100%;
+    //   border-radius: 4px;
+    //   border-color: lightgray;
+    //   border-width: 1px;
+    //   font-size: large;
+    //   color: grey;
+    //   box-shadow: 3px 4px 12px -5px #4b5452;
+    //   padding-left: 3%;
+    // }
   }
+
   .results-label {
     margin-top: 2%;
     font-weight: 450;
