@@ -19,14 +19,7 @@ export class ArticleService {
       map((data: any) => {
         let articles: any[] = data['results'];
         return articles.map((article: any) => {
-          return new Article(
-            article.id,
-            article.title,
-            article.url,
-            article.image_url,
-            article.summary,
-            article.updated_at
-          );
+          return new Article(article);
         });
       })
     );
@@ -40,14 +33,7 @@ export class ArticleService {
       map((data: any) => {
         let articles: any[] = data['results'];
         return articles.map((article: any) => {
-          return new Article(
-            article.id,
-            article.title,
-            article.url,
-            article.image_url,
-            article.summary,
-            article.updated_at
-          );
+          return new Article(article);
         });
       })
     );
@@ -61,16 +47,25 @@ export class ArticleService {
       map((data: any) => {
         let articles: any[] = data['results'];
         return articles.map((article: any) => {
-          return new Article(
-            article.id,
-            article.title,
-            article.url,
-            article.image_url,
-            article.summary,
-            article.updated_at
-          );
+          return new Article(article);
         });
       })
     );
+  }
+
+  getArticleById(id: Number): Observable<Article> {
+    let response = this.http.get(
+      `https://api.spaceflightnewsapi.net/v4/articles/${id}`
+    );
+    return response.pipe(
+      map((data: any) => {
+        return new Article(data);
+      })
+    );
+  }
+
+  getArticleContent(url: string): Observable<string> {
+    let response = this.http.get(url);
+    return response.pipe(map((data) => data.toString()));
   }
 }

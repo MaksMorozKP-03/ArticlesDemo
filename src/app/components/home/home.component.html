@@ -1,10 +1,6 @@
 <div class="container">
   <div class="input-explanation">Filter by keywords</div>
-  <!-- <div class="search-field">
-    <mat-icon id="icon">search</mat-icon>
-    <input type="search" (input)="filterArticles($event)" />
-  </div> -->
-  <mat-form-field focused="false" class="example-full-width">
+  <mat-form-field class="example-full-width">
     <mat-icon matPrefix id="icon">search</mat-icon>
     <input matInput type="search" />
   </mat-form-field>
@@ -21,7 +17,11 @@
         </div>
         <h3>{{ article.title }}</h3>
         <p>{{ article.summary }}</p>
-        <button mat-button class="home-nav">
+        <button
+          [routerLink]="['/articles/', article.id]"
+          mat-button
+          class="home-nav"
+        >
           Read more
           <mat-icon iconPositionEnd>arrow_forward</mat-icon>
         </button>

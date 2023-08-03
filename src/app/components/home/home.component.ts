@@ -2,6 +2,7 @@ import { Component, Input, Output, SimpleChanges } from '@angular/core';
 import { ArticleService } from '../../services/article.service';
 import Article from '../../models/Article';
 import { combineLatestWith } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +10,7 @@ import { combineLatestWith } from 'rxjs';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  constructor(private articleService: ArticleService) {}
+  constructor(private articleService: ArticleService, private router: Router) {}
   @Output() shownArticles: Article[] = [];
 
   private allArticles: Article[] = [];

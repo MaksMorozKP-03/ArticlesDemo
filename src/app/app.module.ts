@@ -8,6 +8,8 @@ import { ArticleComponent } from './components/article/article.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { HighlighterPipe } from './pipes/highlighter.pipe';
+import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,8 @@ import { HighlighterPipe } from './pipes/highlighter.pipe';
     MatIconModule,
     HttpClientModule,
     MatInputModule,
+    AppRoutingModule,
+    RouterModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

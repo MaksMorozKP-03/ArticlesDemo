@@ -1,25 +1,28 @@
 export default class Article {
-  id: Number;
-  title: String;
-  url: String;
-  imageUrl: String;
-  summary: String;
+  id: Number = 0;
+  title: string = '';
+  url: string = '';
+  imageUrl: string = '';
+  summary: string = '';
   textContent: string = '';
-  updatedAt: Date;
+  updatedAt: Date = new Date();
 
   constructor(
-    id: Number,
-    title: String,
-    url: String,
-    imageUrl: String,
-    summary: String,
-    updatedAt: string
+    // id: Number,
+    // title: string,
+    // url: string,
+    // imageUrl: string,
+    // summary: string,
+    // updatedAt: string
+    article: any
   ) {
-    this.id = id;
-    this.title = title;
-    this.url = url;
-    this.imageUrl = imageUrl;
-    this.summary = summary;
-    this.updatedAt = new Date(updatedAt);
+    if (article) {
+      this.id = article.id;
+      this.title = article.title;
+      this.url = article.url;
+      this.imageUrl = article.image_url;
+      this.summary = article.summary;
+      this.updatedAt = new Date(article.updated_at);
+    }
   }
 }
