@@ -63,9 +63,4 @@ export class ArticleService {
       })
     );
   }
-
-  getArticleContent(url: string): Observable<string> {
-    let response = this.http.get(url);
-    return response.pipe(map((data) => data.toString()));
-  }
 }

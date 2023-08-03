@@ -1,7 +1,8 @@
+<img class="image" src="{{ article.imageUrl }}" />
 <div class="container">
   <div class="content">
     <h3>{{ article.title }}</h3>
-    <p>{{ article.textContent }}</p>
+    <p>{{ article.summary }}</p>
   </div>
   <button mat-button class="home-nav" [routerLink]="['/home']">
     <mat-icon>arrow_back</mat-icon>
