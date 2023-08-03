@@ -2,7 +2,7 @@
   <div class="input-explanation">Filter by keywords</div>
   <mat-form-field class="example-full-width">
     <mat-icon matPrefix id="icon">search</mat-icon>
-    <input matInput type="search" />
+    <input matInput type="search" (change)="filterArticles($event)" />
   </mat-form-field>
 
   <div class="results-label">Results: {{ shownArticles.length }}</div>

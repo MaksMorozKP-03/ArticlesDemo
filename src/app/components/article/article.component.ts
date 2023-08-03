@@ -19,10 +19,10 @@ export class ArticleComponent {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
     this.articleService.getArticleById(+(id || 0)).subscribe((data) => {
       this.article = data;
-      // this.articleService.getArticleContent(data.url).subscribe((content) => {
-      //   if (this.article) this.article.textContent = content;
-      //   console.log(this.article);
-      // });
+      this.articleService.getArticleContent(data.url).subscribe((content) => {
+        if (this.article) this.article.textContent = content;
+        console.log(this.article);
+      });
     });
   }
 }
