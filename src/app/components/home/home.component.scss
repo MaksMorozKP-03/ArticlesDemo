@@ -9,28 +9,9 @@
     font-weight: 550;
   }
 
-  .search-field {
+  .search-input {
     margin-top: 0.5%;
-    height: 4%;
-
-    #icon {
-      position: absolute;
-      width: 5%;
-      top: 4%;
-      left: 1%;
-    }
-
-    // input {
-    //   min-width: 30%;
-    //   min-height: 100%;
-    //   border-radius: 4px;
-    //   border-color: lightgray;
-    //   border-width: 1px;
-    //   font-size: large;
-    //   color: grey;
-    //   box-shadow: 3px 4px 12px -5px #4b5452;
-    //   padding-left: 3%;
-    // }
+    min-width: 30%;
   }
 
   .results-label {
@@ -47,6 +28,7 @@
     display: flex;
     flex-wrap: wrap;
     margin-top: 2%;
+
     .card {
       width: 20%;
       height: 40%;
@@ -57,13 +39,12 @@
       img {
         width: 100%;
       }
-      .date-label {
-        color: lightgrey;
-        font-size: small;
-      }
 
-      h3 {
-        font-weight: normal;
+      .card-content {
+        .date-label {
+          color: lightgrey;
+          font-size: small;
+        }
       }
     }
   }

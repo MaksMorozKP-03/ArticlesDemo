@@ -1,6 +1,6 @@
 <div class="container">
   <div class="input-explanation">Filter by keywords</div>
-  <mat-form-field class="example-full-width">
+  <mat-form-field class="search-input" appearance="outline">
     <mat-icon matPrefix id="icon">search</mat-icon>
     <input matInput type="search" (change)="filterArticles($event)" />
   </mat-form-field>
@@ -15,8 +15,12 @@
           <mat-icon inline="true">calendar_today</mat-icon>
           {{ article.updatedAt.toLocaleDateString() }}
         </div>
-        <h3>{{ article.title }}</h3>
-        <p>{{ article.summary }}</p>
+        <h3 innerHTML="{{ article.title | highlighter : searchedText }}"></h3>
+        <p
+          innerHTML="{{
+            article.summary.slice(0, 100) | highlighter : searchedText
+          }}"
+        ></p>
         <button
           [routerLink]="['/articles/', article.id]"
           mat-button

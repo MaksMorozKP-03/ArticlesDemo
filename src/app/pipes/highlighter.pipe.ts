@@ -4,15 +4,13 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'highlighter',
 })
 export class HighlighterPipe implements PipeTransform {
-  transform(value: any, args: any, type: string): unknown {
-    if (!args) return value;
-    if (type === 'full') {
-      const re = new RegExp('\\b(' + args + '\\b)', 'igm');
-      value = value.replace(re, '<span class="highlighted-text">$1</span>');
-    } else {
-      const re = new RegExp(args, 'igm');
-      value = value.replace(re, '<span class="highlighted-text">$&</span>');
-    }
+  transform(value: string, query: string): any {
+    if (!query) return value;
+    let keywords = query.split(' ');
+    keywords.forEach((key) => {
+      const re = new RegExp(key, 'igm');
+      value = value.replace(re, '<mark>$&</mark>');
+    });
 
     return value;
   }

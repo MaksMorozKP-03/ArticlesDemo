@@ -1,4 +1,4 @@
-import { Component, Input, Output, SimpleChanges } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { ArticleService } from '../../services/article.service';
 import Article from '../../models/Article';
 import { combineLatestWith } from 'rxjs';
@@ -12,8 +12,10 @@ import { Router } from '@angular/router';
 export class HomeComponent {
   constructor(private articleService: ArticleService, private router: Router) {}
   @Output() shownArticles: Article[] = [];
+  @Output() searchedText: string = '';
 
   private allArticles: Article[] = [];
+
   ngOnInit() {
     this.articleService.getArticles().subscribe((result) => {
       this.shownArticles = result;
@@ -23,7 +25,7 @@ export class HomeComponent {
 
   filterArticles(event: Event) {
     let query = (<HTMLInputElement>event.target).value;
-
+    this.searchedText = query;
     query = query.replaceAll(' ', ',');
     if (query) {
       let articlesByTitle: Article[] = [];
@@ -41,6 +43,7 @@ export class HomeComponent {
             return !articlesByTitle.find((article) => article.id === item.id);
           });
           this.shownArticles = articlesByTitle.concat(arr);
+          console.log(this.shownArticles);
         });
     } else {
       this.shownArticles = this.allArticles;
