@@ -43,7 +43,6 @@ export class HomeComponent {
             return !articlesByTitle.find((article) => article.id === item.id);
           });
           this.shownArticles = articlesByTitle.concat(arr);
-          console.log(this.shownArticles);
         });
     } else {
       this.shownArticles = this.allArticles;
