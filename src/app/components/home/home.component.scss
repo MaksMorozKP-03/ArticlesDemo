@@ -12,6 +12,10 @@
   .search-input {
     margin-top: 0.5%;
     min-width: 30%;
+
+    input::-webkit-search-cancel-button {
+      cursor: pointer;
+    }
   }
 
   .results-label {
