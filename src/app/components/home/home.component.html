@@ -1,8 +1,13 @@
-<div class="container">
+<div class="container" *ngIf="shownArticles$ | async as shownArticles">
   <div class="input-explanation">Filter by keywords</div>
   <mat-form-field class="search-input" appearance="outline">
     <mat-icon matPrefix id="icon">search</mat-icon>
-    <input matInput type="search" (change)="filterArticles($event)" />
+    <input
+      matInput
+      type="search"
+      [formControl]="searchedText"
+      (search)="search()"
+    />
   </mat-form-field>
 
   <div class="results-label">Results: {{ shownArticles.length }}</div>
@@ -15,12 +20,8 @@
           <mat-icon inline="true">calendar_today</mat-icon>
           {{ article.updatedAt.toLocaleDateString() }}
         </div>
-        <h3 innerHTML="{{ article.title | highlighter : searchedText }}"></h3>
-        <p
-          innerHTML="{{
-            article.summary.slice(0, 100) | highlighter : searchedText
-          }}"
-        ></p>
+        <h3>{{ article.title }}</h3>
+        <p>{{ article.summary.slice(0, 100) }}</p>
         <button
           [routerLink]="['/articles/', article.id]"
           mat-button

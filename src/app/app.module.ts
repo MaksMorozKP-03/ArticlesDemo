@@ -7,17 +7,13 @@ import { AppComponent } from './app.component';
 import { ArticleComponent } from './components/article/article.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HighlighterPipe } from './pipes/highlighter.pipe';
 import { AppRoutingModule } from './app-routing.module';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ArticleComponent,
-    HomeComponent,
-    HighlighterPipe,
-  ],
+  declarations: [AppComponent, ArticleComponent, HomeComponent],
   imports: [
     BrowserModule,
     MatButtonModule,
@@ -26,6 +22,8 @@ import { RouterModule } from '@angular/router';
     MatInputModule,
     AppRoutingModule,
     RouterModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

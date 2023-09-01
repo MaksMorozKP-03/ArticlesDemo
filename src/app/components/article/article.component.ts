@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 import Article from 'src/app/models/Article';
 import { ArticleService } from 'src/app/services/article.service';
 
@@ -9,7 +10,7 @@ import { ArticleService } from 'src/app/services/article.service';
   styleUrls: ['./article.component.scss'],
 })
 export class ArticleComponent {
-  @Input() article: Article = new Article(null);
+  article$ = new Observable<Article>();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -17,8 +18,6 @@ export class ArticleComponent {
   ) {}
   ngOnInit() {
     let id = this.activatedRoute.snapshot.paramMap.get('id');
-    this.articleService.getArticleById(+(id || 0)).subscribe((data) => {
-      this.article = data;
-    });
+    this.article$ = this.articleService.getArticleById(+(id || 0));
   }
 }

@@ -1,51 +1,43 @@
-import { Component, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ArticleService } from '../../services/article.service';
 import Article from '../../models/Article';
-import { combineLatestWith } from 'rxjs';
-import { Router } from '@angular/router';
+import { Observable, combineLatestWith, map } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent {
-  constructor(private articleService: ArticleService, private router: Router) {}
-  @Output() shownArticles: Article[] = [];
-  @Output() searchedText: string = '';
-
-  private allArticles: Article[] = [];
+export class HomeComponent implements OnInit {
+  constructor(private articleService: ArticleService) {}
+  searchedText = new FormControl('');
+  allArticles$: Observable<Article[]> = this.articleService.getArticles();
+  shownArticles$: Observable<Article[]> = this.allArticles$;
 
   ngOnInit() {
-    this.articleService.getArticles().subscribe((result) => {
-      this.shownArticles = result;
-      this.allArticles = result;
-    });
+    this.allArticles$ = this.articleService.getArticles();
+    this.shownArticles$ = this.allArticles$;
   }
 
-  filterArticles(event: Event) {
-    let query = (<HTMLInputElement>event.target).value;
-    this.searchedText = query;
-    query = query.replaceAll(' ', ',');
+  search() {
+    let query = this.searchedText.value?.replaceAll(' ', ',');
     if (query) {
-      let articlesByTitle: Article[] = [];
-      let articlesBySummary: Article[] = [];
-
-      this.articleService
+      this.shownArticles$ = this.articleService
         .searchArticlesByTitle(query)
         .pipe(
-          combineLatestWith(this.articleService.searchArticlesBySummary(query))
-        )
-        .subscribe(([articlesWithTitles, articlesWithSummaries]) => {
-          articlesByTitle = articlesWithTitles;
-          articlesBySummary = articlesWithSummaries;
-          let arr = articlesBySummary.filter((item) => {
-            return !articlesByTitle.find((article) => article.id === item.id);
-          });
-          this.shownArticles = articlesByTitle.concat(arr);
-        });
+          combineLatestWith(this.articleService.searchArticlesBySummary(query)),
+          map(([articlesWithTitles, articlesWithSummaries]) => {
+            let arr = articlesWithSummaries.filter((item) => {
+              return !articlesWithTitles.find(
+                (article) => article.id === item.id
+              );
+            });
+            return articlesWithTitles.concat(arr);
+          })
+        );
     } else {
-      this.shownArticles = this.allArticles;
+      this.shownArticles$ = this.allArticles$;
     }
   }
 }

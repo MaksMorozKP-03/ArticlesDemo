@@ -1,11 +1,13 @@
-<img class="image" src="{{ article.imageUrl }}" />
-<div class="container">
-  <div class="content">
-    <h3>{{ article.title }}</h3>
-    <p>{{ article.summary }}</p>
+<div *ngIf="article$ | async as article" style="height: 100%">
+  <img class="image" src="{{ article.imageUrl }}" />
+  <div class="container">
+    <div class="content">
+      <h3>{{ article.title }}</h3>
+      <p>{{ article.summary }}</p>
+    </div>
+    <button mat-button class="home-nav" [routerLink]="['/home']">
+      <mat-icon>arrow_back</mat-icon>
+      Back to homepage
+    </button>
   </div>
-  <button mat-button class="home-nav" [routerLink]="['/home']">
-    <mat-icon>arrow_back</mat-icon>
-    Back to homepage
-  </button>
 </div>
